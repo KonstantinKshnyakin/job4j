@@ -9,7 +9,7 @@ public class MatrixTes {
 
     @Test
     public void when2on2() {
-        Matrix matrix = new Matrix( );
+        Matrix matrix = new Matrix();
         int[][] table = matrix.multiple(2);
         int[][] expect = {
                 {1, 2},
@@ -20,7 +20,7 @@ public class MatrixTes {
 
     @Test
     public void when4on4() {
-        Matrix matrix = new Matrix( );
+        Matrix matrix = new Matrix();
         int[][] table = matrix.multiple(4);
         int[][] expect = {
                 {1, 2, 3, 4},
@@ -33,7 +33,7 @@ public class MatrixTes {
 
     @Test
     public void when7on7() {
-        Matrix matrix = new Matrix( );
+        Matrix matrix = new Matrix();
         int[][] table = matrix.multiple(7);
         int[][] expect = {
                 {1, 2, 3, 4, 5, 6, 7},

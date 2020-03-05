@@ -23,6 +23,5 @@ public class CheckPrimeNumberTest {
     public void when1() {
         boolean rsl = CheckPrimeNumber.check(1);
         assertThat(rsl, is(false));
-        System.out.println(1 % 2 );
     }
 }

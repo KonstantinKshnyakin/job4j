@@ -7,7 +7,7 @@ public class ArrayChar {
         for (int i = 0; i < pref.length; i++) {
             boolean isEquals = pref[i] == word[i];
             if (!isEquals) {
-                System.out.println(i );
+                System.out.println(i);
                 return false;
             }
         }
