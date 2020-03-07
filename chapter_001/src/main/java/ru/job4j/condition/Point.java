@@ -7,8 +7,7 @@ public class Point {
         int y2MinusY1 = y2 - y1;
         double powX = Math.pow(x2MinusX1, 2);
         double powY = Math.pow(y2MinusY1, 2);
-        double rsl = Math.sqrt(powX + powY);
-        return rsl;
+        return Math.sqrt(powX + powY);
     }
 
     public static void main(String[] args) {
