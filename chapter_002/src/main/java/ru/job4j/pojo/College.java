@@ -9,10 +9,10 @@ public class College {
         kolay.setLastName("Якут");
         kolay.setGroup("СГН-221");
         kolay.setReceiptDate("10.08.2017");
-        System.out.println("Имя : " + kolay.getName() + "\n" +
-                "Отчество : " + kolay.getMiddleName() + "\n" +
-                "Фомилия : " + kolay.getLastName() + "\n" +
-                "Группа : " + kolay.getGroup()+ "\n" +
+        System.out.println("Имя : " + kolay.getName() + System.lineSeparator() +
+                "Отчество : " + kolay.getMiddleName() + System.lineSeparator() +
+                "Фомилия : " + kolay.getLastName() + System.lineSeparator() +
+                "Группа : " + kolay.getGroup()+ System.lineSeparator() +
                 "Дата поступления : " + kolay.getReceiptDate());
     }
 }
