@@ -74,11 +74,23 @@ public class Tracker {
      * @return массив Item or null.
      */
     public Item findById(String id) {
+        int index = indexOf(id);
+        return index != -1 ? items[index] : null;
+    }
+
+    public void replace(String id, Item item) {
+        int index = indexOf(id);
+        item.setId(items[index].getId());
+        items[index] = item;
+    }
+
+    private int indexOf(String id) {
+        int rsl = -1;
         for (int index = 0; index < position; index++) {
             if (items[index].getId().equals(id)) {
-                return items[index];
+                return index;
             }
         }
-        return null;
+        return rsl;
     }
 }
