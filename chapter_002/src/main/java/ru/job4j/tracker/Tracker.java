@@ -69,10 +69,14 @@ public class Tracker {
         return index != -1 ? items[index] : null;
     }
 
-    public void replace(String id, Item item) {
+    public boolean replace(String id, Item item) {
         int index = indexOf(id);
+        if (index == -1) {
+            return false;
+        }
         item.setId(items[index].getId());
         items[index] = item;
+        return true;
     }
 
     private int indexOf(String id) {
