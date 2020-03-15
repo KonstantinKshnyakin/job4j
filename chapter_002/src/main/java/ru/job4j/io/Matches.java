@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Matches {
 
-    private final static String message = "Можно взять от 1 до 3 спичек!";
+    private static String message = "Можно взять от 1 до 3 спичек!";
     private static int inputNumber;
     private static int numberMatches;
     private static int moveCounter;
@@ -35,7 +35,7 @@ public class Matches {
 
     public static void playerMove(int player) {
         System.out.println("Ход игрока № " + player);
-        inputNumber = Integer.parseInt(input.nextLine( ));
+        inputNumber = Integer.parseInt(input.nextLine());
         if (validateInputNumbers()) {
             numberMatches = numberMatches - inputNumber;
             moveCounter++;
@@ -44,11 +44,11 @@ public class Matches {
 
     public static boolean validateInputNumbers() {
         if (inputNumber >= 1 && inputNumber <= 3) {
-            if (numberMatches - inputNumber >= 0){
+            if (numberMatches - inputNumber >= 0) {
                 return true;
             }
         }
-        System.out.println("Невреное колличество спичек!" + System.lineSeparator( ) + message);
+        System.out.println("Невреное колличество спичек!" + System.lineSeparator() + message);
         return false;
     }
 }

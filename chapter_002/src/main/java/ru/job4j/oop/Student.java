@@ -1,6 +1,6 @@
 package ru.job4j.oop;
 
-public class Student extends Object{
+public class Student extends Object {
 
     public void music() {
         System.out.println("Tra tra tra");
@@ -11,7 +11,7 @@ public class Student extends Object{
     }
 
     public static void main(String[] args) {
-        Student petya = new Student( );
+        Student petya = new Student();
         petya.song();
         petya.song();
         petya.song();

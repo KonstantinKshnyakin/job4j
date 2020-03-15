@@ -28,7 +28,7 @@ public class Library {
 
         for (int i = 0; i < library.length; i++) {
             if (library[i].getName().equals("Clean Code")) {
-                System.out.println(library[i].getName( ) + " - " + library[i].getNumberOfPages( ));
+                System.out.println(library[i].getName() + " - " + library[i].getNumberOfPages());
             }
         }
 

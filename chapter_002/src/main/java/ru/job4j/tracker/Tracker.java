@@ -94,7 +94,7 @@ public class Tracker {
         if (index == -1) {
             return false;
         }
-        System.arraycopy(items, index + 1,items, index, position - index);
+        System.arraycopy(items, index + 1, items, index, position - index);
         items[position - 1] = null;
         position--;
         return true;

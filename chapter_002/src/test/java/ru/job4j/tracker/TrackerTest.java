@@ -35,7 +35,7 @@ public class TrackerTest {
         tracker.add(new Item("L3"));
         Item[] all = tracker.findAll();
         for (int i = 0; i < all.length; i++) {
-            assertEquals(all[i].getName( ), ("L" + i));
+            assertEquals(all[i].getName(), ("L" + i));
             assertNotNull(all[i].getId());
         }
     }

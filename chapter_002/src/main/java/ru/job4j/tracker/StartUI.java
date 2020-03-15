@@ -10,7 +10,7 @@ public class StartUI {
     public void init(Input input, Tracker tracker) {
         boolean run = true;
         while (run) {
-            this.showMenu( );
+            this.showMenu();
             int selectNumber = input.askInt(select);
             if (selectNumber == 0) {
                 createItem(input, tracker);
@@ -105,7 +105,7 @@ public class StartUI {
 
     public static void showAll(Tracker tracker) {
         System.out.println("=== Show all items ====");
-        Item[] all = tracker.findAll( );
+        Item[] all = tracker.findAll();
         for (int i = 0; i < all.length; i++) {
             System.out.println(i + ". " + all[i]);
         }
