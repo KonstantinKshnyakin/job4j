@@ -14,6 +14,6 @@ public class Bus implements Transport {
 
     @Override
     public double fillUp(double liters) {
-        return 0;
+        return liters * 45;
     }
 }

@@ -48,7 +48,7 @@ public class StartUI {
         new StartUI().init(input, tracker);
     }
 
-    private static void findItemByName(Input input, Tracker tracker) {
+    public static void findItemByName(Input input, Tracker tracker) {
         System.out.println("=== Find items by name ====");
         String name = input.askStr(enterName);
         Item[] itemByName = tracker.findByName(name);
@@ -61,7 +61,7 @@ public class StartUI {
         }
     }
 
-    private static void findItemById(Input input, Tracker tracker) {
+    public static void findItemById(Input input, Tracker tracker) {
         System.out.println("=== Find item by Id ====");
         String id = input.askStr(enterId);
         Item itemById = tracker.findById(id);
@@ -72,9 +72,9 @@ public class StartUI {
         }
     }
 
-    private static void editItem(Input input, Tracker tracker) {
+    public static void editItem(Input input, Tracker tracker) {
         System.out.println("=== Edit item ====");
-        String id = input.askStr("Enter old Id: ");
+        String id = input.askStr("Enter Id: ");
         String newName = input.askStr("Enter new name: ");
         Item item = new Item(newName);
         if (tracker.replace(id, item)) {
@@ -84,7 +84,7 @@ public class StartUI {
         }
     }
 
-    private static void delete(Input input, Tracker tracker) {
+    public static void delete(Input input, Tracker tracker) {
         System.out.println("=== Delete item ====");
         String id = input.askStr(enterId);
         if (tracker.delete(id)) {
@@ -94,14 +94,14 @@ public class StartUI {
         }
     }
 
-    private static void createItem(Input input, Tracker tracker) {
+    public static void createItem(Input input, Tracker tracker) {
         System.out.println("=== Create a new Item ====");
         String name = input.askStr(enterName);
         Item item = new Item(name);
         tracker.add(item);
     }
 
-    private static void showAll(Tracker tracker) {
+    public static void showAll(Tracker tracker) {
         System.out.println("=== Show all items ====");
         Item[] all = tracker.findAll( );
         for (int i = 0; i < all.length; i++) {
