@@ -3,8 +3,7 @@ package ru.job4j.tracker;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 public class StartUITest {
 
@@ -55,8 +54,8 @@ public class StartUITest {
         tracker.add(item);
         String[] answers = {item.getId()};
         deleteAction.execute(new StubInput(answers), tracker);
-        Item replaced = tracker.findById(item.getId());
-        assertEquals(replaced, null);
+        Item deleted = tracker.findById(item.getId());
+        assertNull(deleted);
     }
 
     @Test
