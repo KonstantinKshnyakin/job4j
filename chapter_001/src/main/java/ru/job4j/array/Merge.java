@@ -8,7 +8,7 @@ public class Merge {
         int[] rsl = new int[left.length + right.length];
         if (left.length == 0) {
             return right;
-        } else if (right.length == 0){
+        } else if (right.length == 0) {
             return left;
         }
 
@@ -36,7 +36,7 @@ public class Merge {
     }
 
     public static void main(String[] args) {
-        Merge process = new Merge( );
+        Merge process = new Merge();
         int[] rsl = process.merge(
                 new int[]{1, 3, 5},
                 new int[]{2, 4}
