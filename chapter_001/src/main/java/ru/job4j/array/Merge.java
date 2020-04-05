@@ -13,24 +13,15 @@ public class Merge {
         }
 
         for (int i = 0, iLeft = 0, iRight = 0; i < rsl.length; i++) {
-            if (left[iLeft] < right[iRight]) {
-                rsl[i] = left[iLeft];
-
-                if (iLeft < left.length - 1) {
-                    iLeft++;
-                } else {
-                    left[iLeft] = right[right.length - 1] + 1;
-                }
-
-            } else {
-                rsl[i] = right[iRight];
-
-                if (iRight < right.length - 1) {
-                    iRight++;
-                } else {
-                    right[iRight] = left[left.length - 1] + 1;
-                }
+            if (iLeft == left.length) {
+                System.arraycopy(right, iRight, rsl, i, right.length - iRight);
+                break;
             }
+            if (iRight == right.length) {
+                System.arraycopy(left, iLeft, rsl, i, left.length - iLeft);
+                break;
+            }
+            rsl[i] = left[iLeft] < right[iRight] ? left[iLeft++] : right[iRight++];
         }
         return rsl;
     }
