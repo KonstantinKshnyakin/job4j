@@ -2,6 +2,8 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.*;
@@ -33,19 +35,19 @@ public class TrackerTest {
         tracker.add(new Item("L1"));
         tracker.add(new Item("L2"));
         tracker.add(new Item("L3"));
-        Item[] all = tracker.findAll();
-        for (int i = 0; i < all.length; i++) {
-            assertEquals(all[i].getName(), ("L" + i));
-            assertNotNull(all[i].getId());
+        List<Item> all = tracker.findAll();
+        for (int i = 0; i < all.size(); i++) {
+            assertEquals(all.get(i).getName(), ("L" + i));
+            assertNotNull(all.get(i).getId());
         }
     }
 
     @Test
     public void whenItemDontExistThenReturnNull() {
         Tracker tracker = new Tracker();
-        Item[] all = tracker.findAll();
-        for (int i = 0; i < all.length; i++) {
-            assertNull(all[i]);
+        List<Item> all = tracker.findAll();
+        for (Item item : all) {
+            assertNull(item);
         }
     }
 
@@ -56,8 +58,8 @@ public class TrackerTest {
         tracker.add(new Item("L1"));
         tracker.add(new Item("L2"));
         tracker.add(new Item("L0"));
-        Item[] all = tracker.findByName("L0");
-        assertEquals(all.length, 2);
+        List<Item> all = tracker.findByName("L0");
+        assertEquals(all.size(), 2);
     }
 
     @Test
@@ -67,8 +69,8 @@ public class TrackerTest {
         tracker.add(new Item("L1"));
         tracker.add(new Item("L2"));
         tracker.add(new Item("L0"));
-        Item[] all = tracker.findByName("L");
-        assertEquals(all.length, 0);
+        List<Item> all = tracker.findByName("L");
+        assertEquals(all.size(), 0);
     }
 
     @Test
