@@ -1,7 +1,10 @@
 package ru.job4j.tracker;
 
+import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
@@ -92,5 +95,27 @@ public class TrackerTest {
         String id = bug.getId();
         tracker.delete(id);
         assertThat(tracker.findById(id), is(nullValue()));
+    }
+
+    @Test
+    public void compareReversTest() {
+        Item item5 = new Item("item5");
+        Item item1 = new Item("item1");
+        Item item2 = new Item("item2");
+        List<Item> list = Arrays.asList(item5, item1, item2);
+        Collections.sort(list, new ItemsReversSort());
+        List<Item> expected = Arrays.asList(item5, item2, item1);
+        Assert.assertEquals(expected, list);
+    }
+
+    @Test
+    public void compareTest() {
+        Item item5 = new Item("item5");
+        Item item1 = new Item("item1");
+        Item item2 = new Item("item2");
+        List<Item> list = Arrays.asList(item5, item1, item2);
+        Collections.sort(list);
+        List<Item> expected = Arrays.asList(item1, item2, item5);
+        Assert.assertEquals(expected, list);
     }
 }
