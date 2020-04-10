@@ -8,7 +8,6 @@ public class Machine {
 
     public int[] change(int money, int price) {
         int[] rsl = new int[100];
-        int size2 = 1;
         int size = 0;
         int change = money - price;
         for (int coin : COINS) {
