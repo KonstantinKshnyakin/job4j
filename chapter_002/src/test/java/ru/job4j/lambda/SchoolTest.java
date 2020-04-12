@@ -55,4 +55,18 @@ public class SchoolTest {
         expected.put("Сидоров", student12);
         Assert.assertEquals(expected, map);
     }
+
+    @Test
+    public void levelOfTestWhenBound50() {
+        List<Student> rst = Student.levelOf(input, 50);
+        List<Student> expected = Arrays.asList(student9, student8, student7, student4, student5,  student2);
+        Assert.assertEquals(expected, rst);
+    }
+
+    @Test
+    public void levelOfTestWhenBound80() {
+        List<Student> rst = Student.levelOf(input, 80);
+        List<Student> expected = Arrays.asList(student9, student8);
+        Assert.assertEquals(expected, rst);
+    }
 }
