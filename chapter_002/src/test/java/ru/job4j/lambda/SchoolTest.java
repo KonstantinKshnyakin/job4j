@@ -4,7 +4,9 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SchoolTest {
 
@@ -17,6 +19,9 @@ public class SchoolTest {
     private final Student student7 = new Student(79);
     private final Student student8 = new Student(85);
     private final Student student9 = new Student(92);
+    private final Student student10 = new Student("Попов");
+    private final Student student11 = new Student("Иванов");
+    private final Student student12 = new Student("Сидоров");
     private final List<Student> input = Arrays.asList(student1, student2, student3,
             student4, student5, student6, student7, student8, student9);
 
@@ -39,5 +44,15 @@ public class SchoolTest {
         List<Student> collect = School.collect(input, s -> s.getScore() >= 70 && s.getScore() < 100);
         List<Student> expected = Arrays.asList(student7, student8, student9);
         Assert.assertEquals(expected, collect);
+    }
+
+    @Test
+    public void collectToMapTest() {
+        Map<String, Student> map = School.collectToMap(Arrays.asList(student10, student11, student12));
+        Map<String, Student> expected = new HashMap<>();
+        expected.put("Попов", student10);
+        expected.put("Иванов", student11);
+        expected.put("Сидоров", student12);
+        Assert.assertEquals(expected, map);
     }
 }
