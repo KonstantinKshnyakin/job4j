@@ -1,7 +1,2 @@
-# job4j Konstantin K
-
-Объединение зафиксированных измененй
-
-В курсе производилась работа с веткамы git.
-
-В курсе производилась работа с веткамы git.
+[![Build Status](https://travis-ci.com/KonstantinKshnyakin/job4j.svg?branch=master)](https://travis-ci.com/KonstantinKshnyakin/job4j)
+[![codecov](https://codecov.io/gh/KonstantinKshnyakin/job4j/branch/master/graph/badge.svg)](https://codecov.io/gh/KonstantinKshnyakin/job4j)
