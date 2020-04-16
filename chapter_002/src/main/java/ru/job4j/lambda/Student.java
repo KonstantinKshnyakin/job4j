@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Student implements Comparable<Student> {
-
     private Integer score;
     private String lastName;
 
