@@ -9,7 +9,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class JobTest {
-
     private final Job bug1 = new Job("Bug", 1);
     private final Job bug4 = new Job("Bug", 4);
     private final Job bug2 = new Job("Bug", 2);
