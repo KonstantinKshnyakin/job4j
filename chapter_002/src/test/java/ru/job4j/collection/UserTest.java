@@ -14,7 +14,7 @@ public class UserTest {
     @Test
     public void whenAsc() {
         Set<User> users = new TreeSet<>(
-                Set.of( new User("Petr", 32),
+                Set.of(new User("Petr", 32),
                         new User("Ivan", 31))
         );
         Iterator<User> it = users.iterator();

@@ -30,8 +30,8 @@ public class Profile {
 
     @Override
     public String toString() {
-        return "Profile{" +
-                "address=" + address +
-                '}';
+        return "Profile{"
+                + "address=" + address
+                + '}';
     }
 }

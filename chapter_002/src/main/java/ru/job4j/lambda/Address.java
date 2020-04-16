@@ -47,14 +47,24 @@ public class Address {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Address address = (Address) o;
 
-        if (home != address.home) return false;
-        if (apartment != address.apartment) return false;
-        if (city != null ? !city.equals(address.city) : address.city != null) return false;
+        if (home != address.home) {
+            return false;
+        }
+        if (apartment != address.apartment) {
+            return false;
+        }
+        if (city != null ? !city.equals(address.city) : address.city != null) {
+            return false;
+        }
         return street != null ? street.equals(address.street) : address.street == null;
     }
 
@@ -69,11 +79,11 @@ public class Address {
 
     @Override
     public String toString() {
-        return "Address{" +
-                "city='" + city + '\'' +
-                ", street='" + street + '\'' +
-                ", home=" + home +
-                ", apartment=" + apartment +
-                '}';
+        return "Address{"
+                + "city='" + city + '\''
+                + ", street='" + street + '\''
+                + ", home=" + home
+                + ", apartment=" + apartment
+                + '}';
     }
 }

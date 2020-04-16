@@ -1,6 +1,5 @@
 package ru.job4j.lambda;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -34,7 +33,7 @@ public class Student implements Comparable<Student> {
         this.score = score;
     }
 
-    public static List<Student> levelOf(List<Student> students, int bound){
+    public static List<Student> levelOf(List<Student> students, int bound) {
         return students.stream()
                 .flatMap(Stream::ofNullable)
                 .sorted()
@@ -49,9 +48,9 @@ public class Student implements Comparable<Student> {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "score=" + score +
-                ", lastName='" + lastName + '\'' +
-                '}';
+        return "Student{"
+                + "score=" + score
+                + ", lastName='" + lastName + '\''
+                + '}';
     }
 }
