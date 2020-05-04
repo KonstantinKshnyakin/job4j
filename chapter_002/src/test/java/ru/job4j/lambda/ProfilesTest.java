@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
-public class ProfileTest {
+public class ProfilesTest {
     @Test
     public void collectTest() {
         Address address1 = new Address("Moscow", "Lenina", 22, 14);
@@ -17,7 +17,7 @@ public class ProfileTest {
         Profile profile3 = new Profile(address3);
         List<Profile> input = Arrays.asList(profile3, profile1, profile2);
         List<Address> expected = Arrays.asList(address1, address3, address2);
-        List<Address> rst = Profile.collect(input);
+        List<Address> rst = Profiles.collect(input);
         Assert.assertEquals(expected, rst);
     }
 
@@ -33,7 +33,7 @@ public class ProfileTest {
         Profile profile4 = new Profile(address4);
         List<Profile> input = Arrays.asList(profile3, profile1, profile2, profile4);
         List<Address> expected = Arrays.asList(address1, address3, address2);
-        List<Address> rst = Profile.collect(input);
+        List<Address> rst = Profiles.collect(input);
         Assert.assertEquals(expected, rst);
     }
 }
