@@ -32,7 +32,7 @@ public class BankService {
         Optional<List<Account>> accounts = Optional.empty();
         Optional<Account> account = Optional.empty();
         if (user.isPresent()) {
-             accounts = Optional.of(users.get(user.get()));
+            accounts = Optional.of(users.get(user.get()));
         }
         if (accounts.isPresent()) {
             return accounts.get().stream()
