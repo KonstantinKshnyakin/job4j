@@ -32,14 +32,6 @@ public class Student implements Comparable<Student> {
         this.score = score;
     }
 
-    public static List<Student> levelOf(List<Student> students, int bound) {
-        return students.stream()
-                .flatMap(Stream::ofNullable)
-                .sorted()
-                .takeWhile(s -> s.score > bound)
-                .collect(Collectors.toList());
-    }
-
     @Override
     public int compareTo(Student o) {
         return o.score.compareTo(this.score);
