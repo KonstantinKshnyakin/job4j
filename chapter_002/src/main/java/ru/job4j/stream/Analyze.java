@@ -1,5 +1,6 @@
 package ru.job4j.stream;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -48,7 +49,7 @@ public class Analyze {
                                         .sum()
                         )
                 )
-                .max((t1, t2) -> (int) (t1.getScore() - t2.getScore())).get();
+                .max(Comparator.comparingDouble(Tuple::getScore)).get();
     }
 
     public static Tuple bestSubject(Stream<Pupil> stream) {
@@ -57,6 +58,6 @@ public class Analyze {
                 .collect(Collectors.groupingBy(Subject::getName, Collectors.summingInt(Subject::getScore)))
                 .entrySet().stream()
                 .map(entry -> new Tuple(entry.getKey(), entry.getValue()))
-                .max((t1, t2) -> (int) (t1.getScore() - t2.getScore())).get();
+                .max(Comparator.comparingDouble(Tuple::getScore)).get();
     }
 }
