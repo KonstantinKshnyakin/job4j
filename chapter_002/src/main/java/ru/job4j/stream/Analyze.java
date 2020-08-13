@@ -1,7 +1,9 @@
 package ru.job4j.stream;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -32,10 +34,12 @@ public class Analyze {
     public static List<Tuple> averageScoreByPupil(Stream<Pupil> stream) {
         return stream
                 .flatMap(pupil -> pupil.getSubjects().stream())
-                .collect(Collectors.groupingBy(Subject::getName, Collectors.averagingDouble(Subject::getScore)))
+                .collect(Collectors.groupingBy(
+                        Subject::getName,
+                        () -> new TreeMap<>(Collections.reverseOrder()),
+                        Collectors.averagingDouble(Subject::getScore)))
                 .entrySet().stream()
                 .map(entry -> new Tuple(entry.getKey(), entry.getValue()))
-                .sorted((s1, s2) -> s2.getName().compareTo(s1.getName()))
                 .collect(Collectors.toList());
     }
 
