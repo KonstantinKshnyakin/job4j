@@ -21,11 +21,15 @@ public class Tuple {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Tuple tuple = (Tuple) o;
-        return Double.compare(tuple.score, score) == 0 &&
-                Objects.equals(name, tuple.name);
+        return Double.compare(tuple.score, score) == 0
+                && Objects.equals(name, tuple.name);
     }
 
     @Override
@@ -35,9 +39,9 @@ public class Tuple {
 
     @Override
     public String toString() {
-        return "Tuple{" +
-                "name='" + name + '\'' +
-                ", score=" + score +
-                '}';
+        return "Tuple{"
+                + "name='" + name + '\''
+                + ", score=" + score
+                + '}';
     }
 }

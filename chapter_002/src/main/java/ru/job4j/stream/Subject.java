@@ -19,9 +19,9 @@ public class Subject {
 
     @Override
     public String toString() {
-        return "Subject{" +
-                "name='" + name + '\'' +
-                ", score=" + score +
-                '}';
+        return "Subject{"
+                + "name='" + name + '\''
+                + ", score=" + score
+                + '}';
     }
 }
