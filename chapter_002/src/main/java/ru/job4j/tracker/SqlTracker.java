@@ -10,6 +10,14 @@ public class SqlTracker implements Store {
 
     private Connection cn;
 
+    public SqlTracker(Connection connection) {
+        this.cn = connection;
+    }
+
+    public SqlTracker() {
+        this.cn = null;
+    }
+
     public void init() {
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
             Properties config = new Properties();
@@ -77,14 +85,26 @@ public class SqlTracker implements Store {
 
     @Override
     public List<Item> findAll() {
-        return null;
+        ArrayList<Item> itemList = new ArrayList<>();
+        try {
+            PreparedStatement ps = cn.prepareStatement("select * from items");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Item item = new Item(rs.getString("name"));
+                item.setId(String.valueOf(rs.getInt("id")));
+                itemList.add(item);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return itemList;
     }
 
     @Override
     public List<Item> findByName(String key) {
         ArrayList<Item> itemList = new ArrayList<>();
         try {
-            PreparedStatement ps = cn.prepareStatement("select * from items where name = ?", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = cn.prepareStatement("select * from items where name = ?");
             ps.setString(1, key);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
