@@ -10,7 +10,7 @@ public class ShowAction implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Store tracker) {
         List<Item> all = tracker.findAll();
         for (int i = 0; i < all.size(); i++) {
             System.out.println(i + ". " + all.get(i));

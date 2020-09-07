@@ -4,14 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Tracker {
+public class MemTracker implements Store {
     /**
      * Лист для хранения заявок.
      */
     private final List<Item> items = new ArrayList<>();
 
+    @Override
+    public void init() {
+
+    }
+
     /**
      * Метод добавления заявки в хранилище
+     *
      * @param item новая заявка
      */
     public Item add(Item item) {
@@ -22,6 +28,7 @@ public class Tracker {
 
     /**
      * Метод генерирует уникальный ключ для заявки.
+     *
      * @return Уникальный ключ.
      */
     private String generateId() {
@@ -31,6 +38,7 @@ public class Tracker {
 
     /**
      * Метод возвращает массив Item`ов без null ячеек.
+     *
      * @return массив Item.
      */
     public List<Item> findAll() {
@@ -39,6 +47,7 @@ public class Tracker {
 
     /**
      * Метод возвращает массив Item`ов с необходимым именем заявки.
+     *
      * @param key имя необходимой заявки
      * @return массив Item.
      */
@@ -54,6 +63,7 @@ public class Tracker {
 
     /**
      * Метод возвращает Item если он найден, если не найден возвращает null.
+     *
      * @param id id заявки
      * @return массив Item or null.
      */
@@ -89,5 +99,10 @@ public class Tracker {
         }
         items.remove(index);
         return true;
+    }
+
+    @Override
+    public void close() {
+
     }
 }

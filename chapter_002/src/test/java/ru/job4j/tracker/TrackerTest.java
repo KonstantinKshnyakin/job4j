@@ -15,7 +15,7 @@ public class TrackerTest {
 
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("test1");
         tracker.add(item);
         Item result = tracker.findById(item.getId());
@@ -24,7 +24,7 @@ public class TrackerTest {
 
     @Test
     public void whenItemNameDontExistThenReturnNull() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         tracker.add(new Item("L1"));
         tracker.add(new Item("L2"));
         Item result = tracker.findById("SoS");
@@ -33,7 +33,7 @@ public class TrackerTest {
 
     @Test
     public void whenAdd4ItemsThenReturn4Items() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         tracker.add(new Item("L0"));
         tracker.add(new Item("L1"));
         tracker.add(new Item("L2"));
@@ -47,7 +47,7 @@ public class TrackerTest {
 
     @Test
     public void whenItemDontExistThenReturnNull() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         List<Item> all = tracker.findAll();
         for (Item item : all) {
             assertNull(item);
@@ -56,7 +56,7 @@ public class TrackerTest {
 
     @Test
     public void whenAdd2ItemsWithEqualNameThenReturn2Items() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         tracker.add(new Item("L0"));
         tracker.add(new Item("L1"));
         tracker.add(new Item("L2"));
@@ -67,7 +67,7 @@ public class TrackerTest {
 
     @Test
     public void whenAddItemsAndNotEqualNameThenReturn2Items() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         tracker.add(new Item("L0"));
         tracker.add(new Item("L1"));
         tracker.add(new Item("L2"));
@@ -78,7 +78,7 @@ public class TrackerTest {
 
     @Test
     public void whenReplace() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item bug = new Item("Bug");
         tracker.add(bug);
         String id = bug.getId();
@@ -89,7 +89,7 @@ public class TrackerTest {
 
     @Test
     public void whenDelete() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item bug = new Item("Bug");
         tracker.add(bug);
         String id = bug.getId();
