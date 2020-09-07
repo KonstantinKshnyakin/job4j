@@ -3,9 +3,13 @@ package ru.job4j.tracker;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Properties;
 import java.util.StringJoiner;
 
 import static org.hamcrest.core.Is.is;
@@ -93,11 +97,11 @@ public class StartUITest {
     }
 
     @Test
-    public void whenAdd2ItemBd() {
+    public void whenAdd2ItemBd() throws SQLException {
         CreateAction createAction = new CreateAction();
         String[] answers = {"Fix PC", "Fix PC"};
         Input input = new StubInput(answers);
-        Store tracker = new SqlTracker();
+        Store tracker = new SqlTracker(ConnectionRollback.create(this.init()));
         tracker.init();
         createAction.execute(input, tracker);
         createAction.execute(input, tracker);
@@ -111,9 +115,9 @@ public class StartUITest {
     }
 
     @Test
-    public void whenDeleteItemBd() {
+    public void whenDeleteItemBd() throws SQLException {
         DeleteAction deleteAction = new DeleteAction();
-        Store tracker = new SqlTracker();
+        Store tracker = new SqlTracker(ConnectionRollback.create(this.init()));
         tracker.init();
         Item item = new Item("deleted item");
         tracker.add(item);
@@ -124,9 +128,9 @@ public class StartUITest {
     }
 
     @Test
-    public void whenReplaceItemBd() {
+    public void whenReplaceItemBd() throws SQLException {
         EditAction editAction = new EditAction();
-        Store tracker = new SqlTracker();
+        Store tracker = new SqlTracker(ConnectionRollback.create(this.init()));
         tracker.init();
         Item item = new Item("new item");
         tracker.add(item);
@@ -137,6 +141,22 @@ public class StartUITest {
         editAction.execute(new StubInput(answers), tracker);
         Item replaced = tracker.findById(item.getId());
         assertThat(replaced.getName(), is("replaced item"));
+    }
+
+    public Connection init() {
+        try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
+            Properties config = new Properties();
+            config.load(in);
+            Class.forName(config.getProperty("driver-class-name"));
+            return DriverManager.getConnection(
+                    config.getProperty("url"),
+                    config.getProperty("username"),
+                    config.getProperty("password")
+
+            );
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }
     }
 }
 
