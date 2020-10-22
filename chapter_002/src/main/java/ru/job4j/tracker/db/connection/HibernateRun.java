@@ -7,6 +7,8 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ru.job4j.tracker.Item;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class HibernateRun {
@@ -27,7 +29,8 @@ public class HibernateRun {
             for (Item it : list) {
                 System.out.println(it);
             }
-        }  catch (Exception e) {
+            create(new Item("Hibernate", "ddl_auto", Timestamp.valueOf(LocalDateTime.now())), sf);
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             StandardServiceRegistryBuilder.destroy(registry);
