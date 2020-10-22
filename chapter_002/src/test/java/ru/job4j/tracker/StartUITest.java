@@ -48,7 +48,7 @@ public class StartUITest {
         Item item = new Item("new item");
         tracker.add(item);
         String[] answers = {
-                item.getId(),
+                String.valueOf(item.getId()),
                 "replaced item"
         };
         editAction.execute(new StubInput(answers), tracker);
@@ -62,7 +62,7 @@ public class StartUITest {
         MemTracker tracker = new MemTracker();
         Item item = new Item("deleted item");
         tracker.add(item);
-        String[] answers = {item.getId()};
+        String[] answers = {String.valueOf(item.getId())};
         deleteAction.execute(new StubInput(answers), tracker);
         Item deleted = tracker.findById(item.getId());
         assertNull(deleted);
@@ -121,7 +121,7 @@ public class StartUITest {
         tracker.init();
         Item item = new Item("deleted item");
         tracker.add(item);
-        String[] answers = {item.getId()};
+        String[] answers = {String.valueOf(item.getId())};
         deleteAction.execute(new StubInput(answers), tracker);
         Item deleted = tracker.findById(item.getId());
         assertNull(deleted);
@@ -135,7 +135,7 @@ public class StartUITest {
         Item item = new Item("new item");
         tracker.add(item);
         String[] answers = {
-                item.getId(),
+                String.valueOf(item.getId()),
                 "replaced item"
         };
         editAction.execute(new StubInput(answers), tracker);

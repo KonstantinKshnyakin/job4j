@@ -31,9 +31,9 @@ public class MemTracker implements Store {
      *
      * @return Уникальный ключ.
      */
-    private String generateId() {
+    private Integer generateId() {
         Random rm = new Random();
-        return String.valueOf(rm.nextLong() + System.currentTimeMillis());
+        return rm.nextInt();
     }
 
     /**
@@ -67,12 +67,12 @@ public class MemTracker implements Store {
      * @param id id заявки
      * @return массив Item or null.
      */
-    public Item findById(String id) {
+    public Item findById(Integer id) {
         int index = indexOf(id);
         return index != -1 ? items.get(index) : null;
     }
 
-    public boolean replace(String id, Item item) {
+    public boolean replace(Integer id, Item item) {
         int index = indexOf(id);
         if (index == -1) {
             return false;
@@ -82,7 +82,7 @@ public class MemTracker implements Store {
         return true;
     }
 
-    private int indexOf(String id) {
+    private int indexOf(Integer id) {
         int rsl = -1;
         for (int index = 0; index < items.size(); index++) {
             if (items.get(index).getId().equals(id)) {
@@ -92,7 +92,7 @@ public class MemTracker implements Store {
         return rsl;
     }
 
-    public boolean delete(String id) {
+    public boolean delete(Integer id) {
         int index = indexOf(id);
         if (index == -1) {
             return false;
