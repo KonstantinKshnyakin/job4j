@@ -1,4 +1,8 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker.actions;
+
+import ru.job4j.tracker.Item;
+import ru.job4j.tracker.db.Store;
+import ru.job4j.tracker.put.Input;
 
 public class FindByIdAction implements UserAction {
 

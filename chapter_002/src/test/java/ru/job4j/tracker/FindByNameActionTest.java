@@ -1,6 +1,9 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+import ru.job4j.tracker.actions.FindByNameAction;
+import ru.job4j.tracker.db.MemTracker;
+import ru.job4j.tracker.put.StubInput;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -22,7 +25,7 @@ public class FindByNameActionTest {
         FindByNameAction act = new FindByNameAction();
         act.execute(new StubInput(new String[] {"fix bug"}), tracker);
         String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
-                .add(item.getId() + " " + item.getName())
+                .add(item.toString())
                 .toString();
         assertThat(new String(out.toByteArray()), is(expect));
         System.setOut(def);

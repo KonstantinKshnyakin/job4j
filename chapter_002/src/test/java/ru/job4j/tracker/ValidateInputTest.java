@@ -1,6 +1,9 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+import ru.job4j.tracker.put.Input;
+import ru.job4j.tracker.put.StubInput;
+import ru.job4j.tracker.put.ValidateInput;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

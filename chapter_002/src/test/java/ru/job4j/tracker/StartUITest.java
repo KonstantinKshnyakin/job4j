@@ -1,6 +1,16 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+import ru.job4j.tracker.actions.CreateAction;
+import ru.job4j.tracker.actions.DeleteAction;
+import ru.job4j.tracker.actions.EditAction;
+import ru.job4j.tracker.actions.StubAction;
+import ru.job4j.tracker.db.MemTracker;
+import ru.job4j.tracker.db.SqlTracker;
+import ru.job4j.tracker.db.Store;
+import ru.job4j.tracker.db.connection.ConnectionRollback;
+import ru.job4j.tracker.put.Input;
+import ru.job4j.tracker.put.StubInput;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -102,7 +112,6 @@ public class StartUITest {
         String[] answers = {"Fix PC", "Fix PC"};
         Input input = new StubInput(answers);
         Store tracker = new SqlTracker(ConnectionRollback.create(this.init()));
-        tracker.init();
         createAction.execute(input, tracker);
         createAction.execute(input, tracker);
         List<Item> fixList = tracker.findByName("Fix PC");
@@ -111,14 +120,12 @@ public class StartUITest {
         for (Item item : fixList) {
             tracker.delete(item.getId());
         }
-
     }
 
     @Test
     public void whenDeleteItemBd() throws SQLException {
         DeleteAction deleteAction = new DeleteAction();
         Store tracker = new SqlTracker(ConnectionRollback.create(this.init()));
-        tracker.init();
         Item item = new Item("deleted item");
         tracker.add(item);
         String[] answers = {String.valueOf(item.getId())};
@@ -131,7 +138,6 @@ public class StartUITest {
     public void whenReplaceItemBd() throws SQLException {
         EditAction editAction = new EditAction();
         Store tracker = new SqlTracker(ConnectionRollback.create(this.init()));
-        tracker.init();
         Item item = new Item("new item");
         tracker.add(item);
         String[] answers = {

@@ -1,7 +1,13 @@
 package ru.job4j.tracker;
 
 
-import java.sql.*;
+import ru.job4j.tracker.actions.*;
+import ru.job4j.tracker.db.SqlTracker;
+import ru.job4j.tracker.db.Store;
+import ru.job4j.tracker.put.ConsoleInput;
+import ru.job4j.tracker.put.Input;
+import ru.job4j.tracker.put.ValidateInput;
+
 import java.util.ArrayList;
 import java.util.List;
 

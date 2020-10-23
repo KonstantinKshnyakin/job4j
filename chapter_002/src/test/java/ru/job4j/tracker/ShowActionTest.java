@@ -1,6 +1,9 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+import ru.job4j.tracker.actions.ShowAction;
+import ru.job4j.tracker.db.MemTracker;
+import ru.job4j.tracker.put.StubInput;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -21,8 +24,7 @@ public class ShowActionTest {
         tracker.add(item);
         ShowAction act = new ShowAction();
         act.execute(new StubInput(new String[] {}), tracker);
-        String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
-                .add("0. " + item.getId() + " " + item.getName())
+        String expect = new StringJoiner(System.lineSeparator(), "", System.lineSeparator()).add("0. " + item)
                 .toString();
         assertThat(new String(out.toByteArray()), is(expect));
         System.setOut(def);

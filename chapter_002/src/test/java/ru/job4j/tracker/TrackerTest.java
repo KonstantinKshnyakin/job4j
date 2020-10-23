@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 
 import org.junit.Assert;
 import org.junit.Test;
+import ru.job4j.tracker.db.MemTracker;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -28,7 +29,7 @@ public class TrackerTest {
         tracker.add(new Item("L1"));
         tracker.add(new Item("L2"));
         List<Item> result = tracker.findByName("SoS");
-        assertNull(result);
+        assertThat(result.size(), is(0));
     }
 
     @Test
