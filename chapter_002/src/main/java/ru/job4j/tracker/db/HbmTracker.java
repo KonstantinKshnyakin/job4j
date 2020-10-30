@@ -2,13 +2,14 @@ package ru.job4j.tracker.db;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.query.Query;
 import ru.job4j.tracker.Item;
 
 import java.util.List;
+import java.util.function.Function;
 
 public class HbmTracker implements Store, AutoCloseable {
 
@@ -25,78 +26,74 @@ public class HbmTracker implements Store, AutoCloseable {
 
     @Override
     public Item add(Item item) {
-        Session session = sf.openSession();
-        session.beginTransaction();
-        session.save(item);
-        session.getTransaction().commit();
-        session.close();
+        transaction(session -> session.save(item));
         return item;
     }
 
     @Override
     public boolean replace(Integer id, Item item) {
-        Session session = sf.openSession();
-        session.beginTransaction();
-        session.update(item);
-        session.getTransaction().commit();
-        session.close();
-        return true;
+        return transaction(session ->
+                session.createQuery(
+                        "update Item i set i.name = :name, i.description = :description where i.id = :id"
+                )
+                        .setParameter("id", item.getId())
+                        .setParameter("description", item.getDescription())
+                        .executeUpdate() == 1
+        );
     }
 
     @Override
     public boolean delete(Integer id) {
-        Session session = sf.openSession();
-        session.beginTransaction();
-        Query query = session.createQuery("delete from Item i where i.id = :id");
-        query.setParameter("id", id);
-        int update = query.executeUpdate();
-        session.getTransaction().commit();
-        session.close();
-        return update == 1;
+        return transaction(session ->
+                session.createQuery("delete from Item i where i.id = :id")
+                        .setParameter("id", id)
+                        .executeUpdate() == 1
+        );
     }
 
     @Override
     public List<Item> findAll() {
-        Session session = sf.openSession();
-        session.beginTransaction();
-        Query<Item> query = session.createQuery(
-                "select i from Item i",
-                Item.class
+        return transaction(session ->
+                session.createQuery("select i from Item i", Item.class)
+                        .getResultList()
         );
-        List<Item> itemList = query.list();
-        session.getTransaction().commit();
-        session.close();
-        return itemList;
     }
 
     @Override
     public List<Item> findByName(String name) {
-        Session session = sf.openSession();
-        session.beginTransaction();
-        Query<Item> query = session.createQuery(
-                "select i from Item i where i.name = :name",
-                Item.class
+        return transaction(session ->
+                session.createQuery("select i from Item i where i.name = :name", Item.class)
+                        .setParameter("name", name)
+                        .getResultList()
+
         );
-        query.setParameter("name", name);
-        List<Item> item = query.list();
-        session.getTransaction().commit();
-        session.close();
-        return item;
     }
 
     @Override
 
     public Item findById(Integer id) {
-        Session session = sf.openSession();
-        session.beginTransaction();
-        Item item = session.get(Item.class, id);
-        session.getTransaction().commit();
-        session.close();
-        return item;
+        return transaction(
+                session -> session.get(Item.class, id)
+        );
     }
 
     @Override
     public void close() {
         StandardServiceRegistryBuilder.destroy(registry);
+    }
+
+    private <T> T transaction(final Function<Session, T> command) {
+        final Session session = sf.openSession();
+        final Transaction tx = session.beginTransaction();
+        try {
+            T rsl = command.apply(session);
+            tx.commit();
+            return rsl;
+        } catch (final Exception e) {
+            session.getTransaction().rollback();
+            throw e;
+        } finally {
+            session.close();
+        }
     }
 }
